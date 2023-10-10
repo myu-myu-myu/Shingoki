@@ -118,7 +118,13 @@
     "excited",
     ""
   ];
-  const images = [];
+  const images = [
+    "myu.png",
+    "sea1.png",
+    "sea2.png",
+    "sea3.png",
+    // ""
+  ];
 
   const generateRandomText = () => {
     return [
@@ -135,7 +141,7 @@
     const timestamp = timeOffset
       ? new Date(new Date().getTime() - timeOffset)
       : new Date();
-
+    console.log(timestamp);
     return {
       friend: getRandomElement(bacefook.friendNames),
       text: generateRandomText(),
@@ -156,7 +162,7 @@
     addPost(newPost);
   };
 
-  for (let i = 0; i < 10; i++) {
+  for (let i = 0; i < 1; i++) {
     // make the starting posts look like they were posted over the course of the past day
     const timeOffset = (2 * (10 - i) + Math.random()) * 60 * 60 * 1000;
     createPost(timeOffset);

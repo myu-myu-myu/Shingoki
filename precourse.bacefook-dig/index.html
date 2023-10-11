@@ -1,7 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html lang="ja">
 
 <head>
+  <meta charset="utf-8">
   <title>DIG Bacefook Newsfeed</title>
   <script src="dataGenerator.js"></script>
   <script src="moment.js"></script>
@@ -9,8 +10,26 @@
 </head>
 
 <body>
-  <h1>Bacefook Newsfeed</h1>
-  <button id="btn">Reload!</button>
+  <header>
+    <h1>Bacefook Newsfeed</h1>
+    <h2 id="login_name"></h2>
+  </header>
+  <button id="btn_reload">更新!</button>
+  <button id="btn_put">投稿!</button>
+  <!-- *********************************** -->
+  <div class="container">
+    <h1>記事を追加</h1>
+    <form id="articleForm">
+      <label for="articleContent">文章:</label>
+      <textarea id="articleContent" name="articleContent" required></textarea>
+      <label for="articleFeeling">気持ち:</label>
+      <input type="text" id="articleFeeling" name="articleFeeling" required>
+      <label for="articlePicture">写真:</label>
+      <textarea id="articlePicture" name="articlePicture" required></textarea>
+      <button type="submit">投稿</button>
+    </form>
+  </div>
+  <!-- *********************************** -->
   <div id="newsfeed"></div>
   <script src="app.js"></script>
 </body>

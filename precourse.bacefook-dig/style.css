@@ -1,22 +1,88 @@
-/* * {
-    background-color: rgb(182, 201, 106);
-} */
-
-img {
-    /* width: 300px; */
-    height: 100px;
+body {
+    background-color: #ccc;
 }
 
-.friend {
-    background-color: aqua;
-    /* margin: 100px 0 0 0; */
+header {
+    background-color: #EFF2F5;
+    margin: 0;
+    padding: 0;
 }
 
-/* #newsfeed {
-    background-color: blue;
-    /* margin: 100px auto; */
-/* } */
+h1 {
+    color: #0765FF;
+}
+
 .one_post {
-    background-color: gray;
+    background-color: #EFF2F5;
     margin: 0 0 30px 0;
+    border-radius: 10px;
+    box-shadow: 2px 2px 4px #949393;
+}
+
+.friend_name {
+    font-family: Helvetica, Arial, sans-serif;
+    font-weight: bold;
+    font-size: 20px;
+    padding: 20px 50px 10px 50px;
+    /* 上・右・下・左 */
+}
+
+
+.feeling {
+    text-align: right;
+}
+
+.picture {
+    height: 100px;
+    padding: 0px 50px 0px 50px;
+}
+
+
+
+
+
+
+
+/* ************************************** */
+
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f7f7f7;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+input,
+textarea {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button {
+    background-color: #007BFF;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
 }

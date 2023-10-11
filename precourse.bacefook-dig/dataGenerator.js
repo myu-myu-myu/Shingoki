@@ -8,16 +8,10 @@
   window.bacefook = {};
   bacefook.newsfeed = [];
   bacefook.friends = {};
-  bacefook.friendNames = ["tamaroh", "kani", "eriko", "tsubasa", "masataka"];
+  bacefook.friendNames = ["トラちゃん", "しゅんしゅん", "エリコ", "みゅうすけ", "まさたか"];
   bacefook.friendNames.forEach(name => {
     bacefook.friends[name] = [];
   });
-
-  const getRandomElement = array => {
-    // Given an array, returns a random element
-    const randomIndex = Math.floor(Math.random() * array.length);
-    return array[randomIndex];
-  };
 
   const starters = [
     "totally just",
@@ -107,24 +101,30 @@
     ""
   ];
   const feelings = [
-    "happy",
-    "smug",
-    "lovestruck",
-    "gross",
-    "scared",
-    "tired",
-    "angry",
-    "frustrated",
-    "excited",
+    "happy😀",
+    "smug😤",
+    "lovestruck😍",
+    "gross🐦‍⬛",
+    "scared😨",
+    "tired😮‍💨",
+    "angry💢",
+    "frustrated😣",
+    "excited🤩",
     ""
   ];
   const images = [
-    "myu.png",
-    "sea1.png",
-    "sea2.png",
-    "sea3.png",
-    // ""
+    "pic1.png",
+    "pic2.png",
+    "pic3.png",
+    "pic4.png",
+    "pic5.png",
   ];
+
+  const getRandomElement = array => {
+    // Given an array, returns a random element
+    const randomIndex = Math.floor(Math.random() * array.length);
+    return array[randomIndex];
+  };
 
   const generateRandomText = () => {
     return [
@@ -137,11 +137,13 @@
   };
 
   const generatePostObj = timeOffset => {
-    // if an offset is provided, make the timestamp that much older, otherwise just use the current time
-    const timestamp = timeOffset
-      ? new Date(new Date().getTime() - timeOffset)
-      : new Date();
-    console.log(timestamp);
+    // if an offset is provided, make the timestamp that much older, 
+    // otherwise just use the current time
+    const timestamp =
+      timeOffset
+        ? new Date(new Date().getTime() - timeOffset)
+        : new Date();
+    console.log("投稿文生成：", timestamp);
     return {
       friend: getRandomElement(bacefook.friendNames),
       text: generateRandomText(),
@@ -162,7 +164,7 @@
     addPost(newPost);
   };
 
-  for (let i = 0; i < 1; i++) {
+  for (let i = 0; i < 3; i++) {
     // make the starting posts look like they were posted over the course of the past day
     const timeOffset = (2 * (10 - i) + Math.random()) * 60 * 60 * 1000;
     createPost(timeOffset);
@@ -170,7 +172,9 @@
 
   const scheduler = () => {
     createPost(null);
-    setTimeout(scheduler, (3 + Math.random() * 5) * 1000); // generate a new post every 3 to 8 seconds
+    setTimeout(scheduler, (3 + Math.random() * 5) * 1000);
+    // generate a new post every 3 to 8 seconds
+
   };
 
   scheduler();

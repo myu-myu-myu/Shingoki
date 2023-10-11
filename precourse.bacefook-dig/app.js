@@ -101,12 +101,10 @@ btn_reload.addEventListener('click', () => {
   console.log('画面を更新します!');
   load_reload();
 });
-btn_put.addEventListener('click', () => {
+form_post.addEventListener('click', () => {
   console.log('投稿します!');
   // load_reload();
 });
-
-
 
 document.addEventListener('DOMContentLoaded', function () {
   const articleForm = document.getElementById('articleForm');

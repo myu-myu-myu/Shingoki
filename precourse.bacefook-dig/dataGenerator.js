@@ -13,6 +13,7 @@
     bacefook.friends[name] = [];
   });
 
+  
   const starters = [
     "totally just",
     "just",
@@ -119,13 +120,24 @@
     "pic4.png",
     "pic5.png",
   ];
+  
+  //select要素にoption要素を追加
+  const select_item = document.getElementById('articleFeeling');
+  for (const feeling of feelings) {
+    const optionEl = document.createElement('option');
+    optionEl.setAttribute('label', feeling);
+    optionEl.setAttribute('value', feeling);
+    select_item.appendChild(optionEl);
+  };
+
+
 
   const getRandomElement = array => {
     // Given an array, returns a random element
     const randomIndex = Math.floor(Math.random() * array.length);
     return array[randomIndex];
   };
-
+  
   const generateRandomText = () => {
     return [
       getRandomElement(starters),

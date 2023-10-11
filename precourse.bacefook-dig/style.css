@@ -27,6 +27,17 @@ h1 {
     /* 上・右・下・左 */
 }
 
+/* 🐯 */
+#articleFeeling {
+    font-size: 20px;
+    width: 150px;
+    height: 50px;
+}
+
+/* 🐯 */
+#articleContent {
+    height: 200px;
+}
 
 .feeling {
     text-align: right;

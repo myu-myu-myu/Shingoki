@@ -13,7 +13,6 @@
     bacefook.friends[name] = [];
   });
 
-  
   const starters = [
     "totally just",
     "just",
@@ -120,24 +119,13 @@
     "pic4.png",
     "pic5.png",
   ];
-  
-  //select要素にoption要素を追加
-  const select_item = document.getElementById('articleFeeling');
-  for (const feeling of feelings) {
-    const optionEl = document.createElement('option');
-    optionEl.setAttribute('label', feeling);
-    optionEl.setAttribute('value', feeling);
-    select_item.appendChild(optionEl);
-  };
-
-
 
   const getRandomElement = array => {
     // Given an array, returns a random element
     const randomIndex = Math.floor(Math.random() * array.length);
     return array[randomIndex];
   };
-  
+
   const generateRandomText = () => {
     return [
       getRandomElement(starters),
@@ -155,7 +143,7 @@
       timeOffset
         ? new Date(new Date().getTime() - timeOffset)
         : new Date();
-    console.log("投稿文生成：", timestamp);
+    // console.log("投稿文生成：", timestamp);
     return {
       friend: getRandomElement(bacefook.friendNames),
       text: generateRandomText(),
@@ -169,6 +157,8 @@
     const friend = obj.friend;
     bacefook.friends[friend].push(obj);
     bacefook.newsfeed.push(obj);
+
+    newPostAuto(obj);
   };
 
   const createPost = timeOffset => {
@@ -190,4 +180,50 @@
   };
 
   scheduler();
+
+  function newPostAuto(obj){
+    // console.log("newPostAutoが発動",obj);
+
+    const containerEl = document.querySelector("#newsfeed");
+
+    const postEl = document.createElement("div");
+    postEl.className = "one_post";
+
+    //friend
+    const friendEl = document.createElement("div");
+    friendEl.className = "friend_name";
+    friendEl.innerText = obj.friend;
+    postEl.append(friendEl);
+
+    //time
+    const timeEl = document.createElement("div");
+    timeEl.className = "post_time";
+
+    timeEl.innerText = obj.timestamp;
+    postEl.append(timeEl);
+
+    //text
+    const textEl = document.createElement("div");
+    textEl.className = "text";
+    textEl.innerText = obj.text;
+    postEl.append(textEl);
+
+    //feeling
+    const feelingEl = document.createElement("div");
+    feelingEl.className = "feeling";
+    feelingEl.innerText = obj.feeling;
+    postEl.append(feelingEl);
+
+    //img
+    const imageEl = document.createElement("img");
+    imageEl.className = "picture";
+    imageEl.src = `images/${obj.image}`;
+    imageEl.alt = obj.image;
+    postEl.append(imageEl);
+
+    console.log("postEl",postEl)
+    containerEl.prepend(postEl);
+  }
+
+
 })();

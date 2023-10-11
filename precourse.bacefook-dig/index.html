@@ -4,9 +4,6 @@
 <head>
   <meta charset="utf-8">
   <title>DIG Bacefook Newsfeed</title>
-  <script src="dataGenerator.js"></script>
-  <script src="moment.js"></script>
-  <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
@@ -18,20 +15,26 @@
   <button id="btn_put">投稿!</button>
   <!-- *********************************** -->
   <div class="container">
-    <h1>記事を追加</h1>
+    <button id="form_cancel" background-color="#f0f8ff">cancel</button>
+    <button id="form_post" type="submit" background-color="#008b8b">post</button>
     <form id="articleForm">
-      <label for="articleContent">文章:</label>
-      <textarea id="articleContent" name="articleContent" required></textarea>
-      <label for="articleFeeling">気持ち:</label>
-      <input type="text" id="articleFeeling" name="articleFeeling" required>
-      <label for="articlePicture">写真:</label>
+      <textarea id="articleContent" name="articleContent" placeholder="Please write freely!" required></textarea>
+      <label for="articleFeeling">your feelings</label>
+      <select id="articleFeeling" name="articleFeeling" required>
+        <!-- <option value="Hello">Hello</option>
+        <option value="Good Morning">Good Morning</option>
+        <option value="Good night">Good night</option> -->
+      </select>
+      <label for="articlePicture">image</label>
       <textarea id="articlePicture" name="articlePicture" required></textarea>
-      <button type="submit">投稿</button>
     </form>
   </div>
   <!-- *********************************** -->
   <div id="newsfeed"></div>
   <script src="app.js"></script>
+  <script src="dataGenerator.js"></script>
+  <script src="moment.js"></script>
+  <link rel="stylesheet" href="style.css">
 </body>
 
 </html>

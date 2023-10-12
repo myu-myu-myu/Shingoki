@@ -8,11 +8,12 @@ function newPost(post, containerEl, val) {
   postEl.append(friendEl);
 
   const timeEl = document.createElement("div");
-  timeEl.className = "post_time";
+  timeEl.className = `post_time post_time_${post.id}`;
   const time_diff = moment().diff(post.timestamp);
   const time_sec = Math.floor(time_diff / 1000);
+  // console.log("timestamp:",time_sec);
+  
   if (time_sec < 60) {
-    // timeEl.innerText = `posted ${time_sec} seconds ago`;
     timeEl.innerText = `posted a while ago`;
   } else if (time_sec < 60 * 60) {
     timeEl.innerText = `posted ${Math.floor(time_sec / 60)} minites ago`;
@@ -41,6 +42,8 @@ function newPost(post, containerEl, val) {
     ? containerEl.prepend(postEl)
     : containerEl.append(postEl);
 };
+
+
 
 function reloadPost() {
   const containerEl = document.querySelector("#newsfeed");
@@ -198,6 +201,13 @@ function pushPost(post) {
     ].join(" ");
   };
 
+  let count = -1;
+  const idCount = ()=> {
+  // console.log("count:",count);
+  count++ 
+  return count;
+  };
+
   const generatePostObj = timeOffset => {
     // timeOffset: 投稿を自動生成する間隔（乱数で生成）
     const timestamp =
@@ -208,6 +218,7 @@ function pushPost(post) {
     // obj.getTime():objの日時を、1970-01-01 00:00:00(UTC)からのミリ秒で取得
     console.log("投稿文生成：", timestamp);
     return {
+      id: idCount(),
       friend: getRandomElement(bacefook.friendNames),
       text: generateRandomText(),
       feeling: getRandomElement(feelings),
@@ -228,7 +239,8 @@ function pushPost(post) {
     addPost(newPost);
   };
 
-  for (let i = 0; i < 5; i++) {
+  const startComentNum = 3;
+  for (let i = 0; i < startComentNum; i++) {
     // 自動投稿する間隔、乱数で生成
     const timeOffset = (2 * (10 - i) + Math.random()) * 60 * 60 * 1000;
     createPost(timeOffset);
@@ -238,9 +250,28 @@ function pushPost(post) {
     createPost(null);
     setTimeout(scheduler, (3 + Math.random() * 5) * 1000);
     // generate a new post every 3 to 8 seconds
+    setInterval(() => timeReload(bacefook.newsfeed),1000);
   };
 
   scheduler();
+
+  function timeReload(obj){
+    for(let i = 0; i < obj.length ; i++){
+      console.log("timestamp:",obj[i].timestamp);
+      const timeEl = document.querySelector(`.post_time_${i}`);
+
+      const time = Math.floor(moment(obj[i].timestamp).diff(new Date())/1000 * -1);
+
+      if (time < 60) {
+        timeEl.innerText = `posted a while ago`;
+      } else if (time < 60 * 60) {
+        timeEl.innerText = `posted ${Math.floor(time / 60)} minites ago`;
+      } else {
+        timeEl.innerText = `posted ${Math.floor(time / 60 / 60)} hours ago`;
+      }
+    }
+  }
+
   // function newPostAuto(obj) {
   //   console.log("post auto! : ", obj)
   //   const containerEl = document.querySelector("#newsfeed");

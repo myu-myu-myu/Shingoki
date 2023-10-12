@@ -13,13 +13,6 @@ window.addEventListener("load", () => {
   user_display.innerText = username;
 });
 
-// Reloadボタンを押すと
-const btn_reload = document.getElementById('btn_reload');
-btn_reload.addEventListener('click', () => {
-  console.log('画面を更新します!');
-  reloadPost();
-});
-
 // DOM作成後はイベント発火を待つ
 document.addEventListener('DOMContentLoaded', function () {
   const articleForm = document.getElementById('articleForm');
@@ -81,3 +74,26 @@ const filename = target.addEventListener('drop', function (e) {
   return e.dataTransfer.files[0].name;
 });
 console.log("filename : ", filename);
+
+// モーダル
+const modal_btn = document.getElementById('btn-modal-open');//Let's Postボタン
+const modal_01 = document.querySelector('.modal-overlay');//モーダル全体
+const closeBtn_01 = document.getElementById('modal-close');//cancelボタン
+const body_01 = document.getElementsByTagName('body')[0];
+console.log(body_01);
+modal_btn.addEventListener('click', function() {
+  body_01.classList.add('no_scroll');//スクロールさせない
+  modal_01.classList.add('active');
+   closeBtn_01.addEventListener('click', function() {
+      modal_01.classList.remove('active');
+      body_01.classList.remove('no_scroll');
+   }, false);
+   //Escapeを押した時に閉じるようにする
+   document.addEventListener('keydown', keydown_ivent);
+   function keydown_ivent(e) {
+      if(e.key == 'Escape'){
+         modal.classList.remove('active');
+        body_01.classList.remove('no_scroll');
+      }
+   }
+}, false);

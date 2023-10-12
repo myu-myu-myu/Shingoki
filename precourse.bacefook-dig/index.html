@@ -14,24 +14,32 @@
   <header>
     <h1>Signal chat</h1>
     <h2 id="login_name"></h2>
-    <button class="btn_water" id="btn_reload">Reload!</button>
+    <a href="javascript:void(0)" class="btn btn-modal-open" id="btn-modal-open">
+      <span>Let's Post !</span>
+    </a>
   </header>
-  <div class="container">
-    <form id="articleForm">
-      <h1>What's up!</h1>
-      <textarea name="articleContent" id="articleContent" rols="2" placeholder="What is happening?!"
-        required></textarea>
-      <label for="articleFeeling">Your Feeling</label>
-      <select name="articleFeeling" id="articleFeeling" required></select>
-      <!-- <label for="articlePicture">Image</label>
-      <input name="articlePicture" id="articlePicture" required></input> -->
-      <div id="articlePicture">
-        Drag & Drop Here!
-        <img id="preview">
-      </div>
-      <button class="btn_water" type="submit">Post</button>
-      <button class="btn_black" type="reset">Cancel</button>
-    </form>
+  <div class="modal-btn-wrapper">
+    <button id="modal-btn" class="modal demo">モーダルウインドウを開く</button>
+ </div>
+ <div class="modal-overlay">
+    <div class="modal-window">
+      <form id="articleForm">
+        <div id="modal-close-wrapper">
+          <button class="btn_black" id="modal-close" type="reset">Cancel</button>
+        </div>
+        <textarea name="articleContent" id="articleContent" rols="2" placeholder="What is happening?!"
+          required></textarea>
+        <label for="articleFeeling">Your Feeling</label>
+        <select name="articleFeeling" id="articleFeeling" required></select>
+        <div id="articlePicture">
+          Drag & Drop Here!
+          <img id="preview">
+        </div>
+        <div id="modal-post-wrapper">
+          <button class="btn_green" id="modal-post" type="submit">Post</button>
+        </div>
+      </form>
+    </div>
   </div>
 
   <div id="newsfeed"></div>

@@ -4,6 +4,10 @@ body {
     padding: 0;
 }
 
+body.no_scroll {
+    overflow: hidden;
+}
+
 header {
     width: 100%;
     height: 70px;
@@ -28,10 +32,10 @@ h1 {
     margin: 0 0 10px 20px;
 }
 
-.container {
+.modal-window {
     max-width: 500px;
     margin: 0 auto;
-    padding: 20px 60px 20px 40px;
+    padding: 0px 60px 20px 40px;
     background-color: #f7f7f7;
     border: 50px solid #ccc;
     border-radius: 5px;
@@ -82,20 +86,34 @@ button {
     cursor: pointer;
 }
 
-.btn_water {
-    background-color: #1C9BEF;
+#modal-post-wrapper {
+    text-align: center;
 }
 
-.btn_water:hover {
-    background-color: #13659d;
+.btn_green {
+    background-color: rgb(17, 255, 0);
 }
 
-.btn_black {
-    background-color: black;
+.btn_green:hover {
+    background-color: rgb(14, 199, 1);
 }
 
-.btn_black:hover {
-    background-color: rgb(61, 61, 61);
+#modal-post {
+    width: 200px;
+    height: 50px;
+}
+
+#modal-close-wrapper {
+    text-align: right;
+}
+
+#modal-close {
+    background-color: rgb(255, 73, 73);
+    width: 100px;
+}
+
+#modal-close:hover {
+    background-color: rgb(150, 53, 53);
 }
 
 .one_post {
@@ -151,3 +169,142 @@ button {
     padding: 2rem;
     text-align: center;
 }
+
+
+
+/*modalボタン-----------------------------------*/
+
+.btn,
+a.btn,
+button.btn {
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.5;
+  position: relative;
+  display: inline-block;
+  padding: 1rem 4rem;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+  text-align: center;
+  vertical-align: middle;
+  text-decoration: none;
+  letter-spacing: 0.1em;
+  color: #212529;
+  border-radius: 0.5rem;
+}
+
+a.btn-modal-open {
+  overflow: hidden;
+  padding: 0.5rem 2rem;
+
+  color: #414141d2;
+  border-radius: 0;
+  background: rgb(248, 248, 122);
+}
+
+a.btn-modal-open span {
+  position: relative;
+}
+
+a.btn-modal-open:before {
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  width: 150%;
+  height: 500%;
+
+  content: "";
+  -webkit-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
+  -webkit-transform: translateX(-98%) translateY(-25%) rotate(45deg);
+  transform: translateX(-98%) translateY(-25%) rotate(45deg);
+
+  background:rgb(123, 251, 114);
+}
+
+a.btn-modal-open:hover:before {
+  -webkit-transform: translateX(-9%) translateY(-25%) rotate(45deg);
+  transform: translateX(-9%) translateY(-25%) rotate(45deg);
+}
+
+/*modal本体-----------------------------------*/
+.modal-overlay{
+    visibility: hidden;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0,0,0,.7);
+    z-index: 999;
+   transition: .3s;
+   opacity:0;
+ }
+ .modal-overlay.active{
+    visibility: visible;
+    transition: .3s;
+    opacity: 1;
+ }
+ .modal-window{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    background-color: #fff;
+    width: 80%;
+    max-width: 900px;
+    height: 500px;
+    margin: 0;
+    padding: 30px;
+    overflow-y: auto;
+ }
+ #close-01 {
+     position: absolute;
+     width: 20px;
+     height: 20px;
+     top: 20px;
+     right: 20px;
+ }
+ #close-01::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 25px;
+    height: 1px;
+    background-color: #000;
+    transform: translate(-50%, -50%) rotate(45deg);
+ }
+ #close-01::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 25px;
+    height: 1px;
+    background-color: #000;
+    transform: translate(-50%, -50%) rotate(-45deg);
+ }
+ .modal-opened {
+     overflow-y: hidden; /*背景を固定*/
+ }
+ @media screen and (max-width: 900px) {
+ #prev, #next {
+     width: 40px;
+     height: 40px;
+     top: 114%;
+ }
+ #prev{
+ left: 35%;
+ }
+ #next{
+ right: 35%;
+ }
+ }
+ 

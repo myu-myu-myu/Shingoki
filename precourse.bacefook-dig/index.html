@@ -12,37 +12,126 @@
 
 <body>
   <header>
-    <h1>Signal chat</h1>
-    <h2 id="login_name"></h2>
-    <a href="javascript:void(0)" class="btn btn-modal-open" id="btn-modal-open">
-      <span>Let's Post !</span>
-    </a>
+    <h1>Home</h1>
+    <img src="" alt="login_icon" id="login_icon">
+    <p id="login_name"></p>
   </header>
-  <div class="modal-btn-wrapper">
-    <button id="modal-btn" class="modal demo">モーダルウインドウを開く</button>
- </div>
- <div class="modal-overlay">
-    <div class="modal-window">
+
+  <nav class="navi">
+    <a href="#" id="top_icon">
+      <span class="icon"><ion-icon name="logo-xbox"></ion-icon></span>
+    </a>
+    <ul>
+      <li class="list">
+        <a href="#">
+          <span class="icon"><ion-icon class="active" name="home-outline"></ion-icon></span>
+          <span class="title">Home</span>
+        </a>
+      </li>
+      <li class="list">
+        <a href="#">
+          <span class="icon"><ion-icon name="search-outline"></ion-icon></span>
+          <span class="title">Explore</span>
+        </a>
+      </li>
+      <li class="list">
+        <a href="#">
+          <span class="icon"><ion-icon name="notifications-outline"></ion-icon></span>
+          <span class="title">Nortifications</span>
+        </a>
+      </li>
+      <li class="list">
+        <a href="#">
+          <span class="icon"><ion-icon name="mail-outline"></ion-icon></span>
+          <span class="title">Messages</span>
+        </a>
+      </li>
+      <li class="list">
+        <a href="#">
+          <span class="icon"><ion-icon name="reader-outline"></ion-icon></span>
+          <span class="title">Lists</span>
+        </a>
+      </li>
+      <li class="list">
+        <a href="#">
+          <span class="icon"><ion-icon name="bookmark-outline"></ion-icon></span>
+          <span class="title">Bookmarks</span>
+        </a>
+      </li>
+      <li class="list">
+        <a href="#">
+          <span class="icon"><ion-icon name="people-outline"></ion-icon></span>
+          <span class="title">Communities</span>
+        </a>
+      </li>
+      <li class="list">
+        <a href="#">
+          <span class="icon"><ion-icon name="logo-xbox"></ion-icon></span>
+          <span class="title">Premium</span>
+        </a>
+      </li>
+      <li class="list">
+        <a href="#">
+          <span class="icon"><ion-icon name="person-outline"></ion-icon></span>
+          <span class="title">Profile</span>
+        </a>
+      </li>
+      <li class="list">
+        <a href="#">
+          <span class="icon"><ion-icon name="ellipsis-horizontal-circle-outline"></ion-icon></span>
+          <span class="title">More</span>
+        </a>
+      </li>
+      <li id="post_btn">
+        <a href="javascript:void(0)" class="btn btn_m_open" id="btn_m_open">
+          <span>Post</span>
+        </a>
+      </li>
+    </ul>
+  </nav>
+  <script>
+    const list = document.querySelectorAll(".list");
+    function activeLink() {
+      list.forEach(item => {
+        item.classList.remove("active");
+      });
+      this.classList.add("active");
+    }
+    list.forEach((item) => {
+      item.addEventListener("click", activeLink);
+    });
+  </script>
+
+  <div class="m_overlay">
+    <div class="m_win">
+
       <form id="articleForm">
-        <div id="modal-close-wrapper">
-          <button class="btn_black" id="modal-close" type="reset">Cancel</button>
-        </div>
-        <textarea name="articleContent" id="articleContent" rols="2" placeholder="What is happening?!"
+        <textarea name="articleContent" id="articleContent" rows="2" placeholder=" What is happenig?! "
           required></textarea>
-        <label for="articleFeeling">Your Feeling</label>
-        <select name="articleFeeling" id="articleFeeling" required></select>
-        <div id="articlePicture">
-          Drag & Drop Here!
-          <img id="preview">
+        <div id="feel_tag">
+          <label for="articleFeeling"></label>
+          <select name="articleFeeling" id="articleFeeling" required></select>
+          <label for="articleTag"></label>
+          <select name="articleTag" id="articleTag" required></select>
         </div>
-        <div id="modal-post-wrapper">
-          <button class="btn_green" id="modal-post" type="submit">Post</button>
+        <div id="articlePicture">Drop Image Here!<img id="preview"> </div>
+        <div id="m_post_wrap">
+          <button class="btn_water" id="m_post" type="submit">Post</button>
+        </div>
+        <div id="m_close_wrap">
+          <button id="m_close" type="reset"></button>
         </div>
       </form>
+
     </div>
   </div>
 
   <div id="newsfeed"></div>
+
+  <!-- ionicons を使うための記述 -->
+  <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
 </body>
 
 </html>

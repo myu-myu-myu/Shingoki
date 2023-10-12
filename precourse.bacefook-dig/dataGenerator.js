@@ -43,7 +43,7 @@ function newPost(post, containerEl, val) {
     : containerEl.append(postEl);
 };
 
-
+let height_before;
 
 function reloadPost() {
   const containerEl = document.querySelector("#newsfeed");
@@ -52,7 +52,12 @@ function reloadPost() {
     const post = bacefook.newsfeed[i];
     newPost(post, containerEl);
   }
+  const height_after = document.getElementById('newsfeed').scrollHeight;
+  const height_difference = height_after - height_before
+  window.scrollBy(0, height_difference);
+  height_before = height_after;
 };
+
 
 function pushPost(post) {
   const containerEl = document.querySelector("#newsfeed");

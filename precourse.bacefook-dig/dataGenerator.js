@@ -1,14 +1,68 @@
-/*
-  This generates our fake newsfeed information.
+function newPost(post, containerEl, val) {
+  const postEl = document.createElement("div");
+  postEl.className = "one_post";
 
-  There is no need to touch the code in here until you get to basic requirement #4,
-  but please check it out to familiarize yourself beforehand.
-*/
+  const friendEl = document.createElement("div");
+  friendEl.className = "friend_name";
+  friendEl.innerText = post.friend;
+  postEl.append(friendEl);
+
+  const timeEl = document.createElement("div");
+  timeEl.className = "post_time";
+  const time_diff = moment().diff(post.timestamp);
+  const time_sec = Math.floor(time_diff / 1000);
+  if (time_sec < 60) {
+    // timeEl.innerText = `posted ${time_sec} seconds ago`;
+    timeEl.innerText = `posted a while ago`;
+  } else if (time_sec < 60 * 60) {
+    timeEl.innerText = `posted ${Math.floor(time_sec / 60)} minites ago`;
+  } else {
+    timeEl.innerText = `posted ${Math.floor(time_sec / 60 / 60)} hours ago`;
+  }
+  postEl.append(timeEl);
+
+  const textEl = document.createElement("div");
+  textEl.className = "text";
+  textEl.innerText = post.text;
+  postEl.append(textEl);
+
+  const feelingEl = document.createElement("div");
+  feelingEl.className = "feeling";
+  feelingEl.innerText = post.feeling;
+  postEl.append(feelingEl);
+
+  const imageEl = document.createElement("img");
+  imageEl.className = "picture";
+  imageEl.src = `images/${post.image}`;
+  imageEl.alt = post.image;
+  postEl.append(imageEl);
+
+  val
+    ? containerEl.prepend(postEl)
+    : containerEl.append(postEl);
+};
+
+function reloadPost() {
+  const containerEl = document.querySelector("#newsfeed");
+  containerEl.innerText = "";
+  for (let i = bacefook.newsfeed.length - 1; i >= 0; i--) {
+    const post = bacefook.newsfeed[i];
+    newPost(post, containerEl);
+  }
+};
+
+function pushPost(post) {
+  const containerEl = document.querySelector("#newsfeed");
+  newPost(post, containerEl, 1);
+  bacefook.newsfeed.push(post);
+};
+
+
 (() => {
   window.bacefook = {};
   bacefook.newsfeed = [];
   bacefook.friends = {};
-  bacefook.friendNames = ["トラちゃん", "しゅんしゅん", "エリコ", "みゅうすけ", "まさたか"];
+  bacefook.friendNames = ["ディグダ", "ヒトカゲ", "ミュウ", "ピカチュウ", "ゼニガメ"];
   bacefook.friendNames.forEach(name => {
     bacefook.friends[name] = [];
   });
@@ -101,16 +155,15 @@
     ""
   ];
   const feelings = [
-    "happy😀",
-    "smug😤",
-    "lovestruck😍",
-    "gross🐦‍⬛",
-    "scared😨",
-    "tired😮‍💨",
-    "angry💢",
-    "frustrated😣",
-    "excited🤩",
-    ""
+    "happy 😀",
+    "smug 😤",
+    "lovestruck 😍",
+    "gross 🐦‍⬛",
+    "scared 😨",
+    "tired 😮‍💨",
+    "angry 💢",
+    "frustrated 😣",
+    "excited 🤩",
   ];
   const images = [
     "pic1.png",
@@ -120,8 +173,17 @@
     "pic5.png",
   ];
 
+  // select要素にoption要素を追加
+  const select_tag = document.getElementById('articleFeeling');
+  for (const i of feelings) {
+    const optionEl = document.createElement('option');
+    optionEl.innerText = i;
+    // optionEl.setAttribute('label', i);
+    // optionEl.setAttribute('value', i);
+    select_tag.appendChild(optionEl);
+  };
+
   const getRandomElement = array => {
-    // Given an array, returns a random element
     const randomIndex = Math.floor(Math.random() * array.length);
     return array[randomIndex];
   };
@@ -137,19 +199,20 @@
   };
 
   const generatePostObj = timeOffset => {
-    // if an offset is provided, make the timestamp that much older, 
-    // otherwise just use the current time
+    // timeOffset: 投稿を自動生成する間隔（乱数で生成）
     const timestamp =
       timeOffset
         ? new Date(new Date().getTime() - timeOffset)
         : new Date();
-    // console.log("投稿文生成：", timestamp);
+    // new Date():日時を省略した場合は現在の日時を表す日付objを生成
+    // obj.getTime():objの日時を、1970-01-01 00:00:00(UTC)からのミリ秒で取得
+    console.log("投稿文生成：", timestamp);
     return {
       friend: getRandomElement(bacefook.friendNames),
       text: generateRandomText(),
       feeling: getRandomElement(feelings),
       image: getRandomElement(images),
-      timestamp
+      timestamp: timestamp
     };
   };
 
@@ -157,8 +220,7 @@
     const friend = obj.friend;
     bacefook.friends[friend].push(obj);
     bacefook.newsfeed.push(obj);
-
-    newPostAuto(obj);
+    reloadPost();
   };
 
   const createPost = timeOffset => {
@@ -166,8 +228,8 @@
     addPost(newPost);
   };
 
-  for (let i = 0; i < 3; i++) {
-    // make the starting posts look like they were posted over the course of the past day
+  for (let i = 0; i < 5; i++) {
+    // 自動投稿する間隔、乱数で生成
     const timeOffset = (2 * (10 - i) + Math.random()) * 60 * 60 * 1000;
     createPost(timeOffset);
   }
@@ -176,54 +238,54 @@
     createPost(null);
     setTimeout(scheduler, (3 + Math.random() * 5) * 1000);
     // generate a new post every 3 to 8 seconds
-
   };
 
   scheduler();
+  // function newPostAuto(obj) {
+  //   console.log("post auto! : ", obj)
+  //   const containerEl = document.querySelector("#newsfeed");
+  //   const postEl = document.createElement("div");
+  //   postEl.className = "one_post";
 
-  function newPostAuto(obj){
-    // console.log("newPostAutoが発動",obj);
+  //   // friend
+  //   const friendEl = document.createElement("div");
+  //   friendEl.className = "friend_name";
+  //   friendEl.innerText = obj.friend;
+  //   postEl.append(friendEl);//子要素として持つ
 
-    const containerEl = document.querySelector("#newsfeed");
+  //   // time
+  //   const timeEl = document.createElement("div");
+  //   timeEl.className = "post_time";
+  //   const time_diff = moment().diff(obj.timestamp);
+  //   const time_sec = Math.floor(time_diff / 1000);
+  //   if (time_sec < 60) {
+  //     timeEl.innerText = ` ${time_sec} 秒前`;
+  //   } else if (time_sec < 60 * 60) {
+  //     timeEl.innerText = ` ${Math.floor(time_sec / 60)} 分前`;
+  //   } else {
+  //     timeEl.innerText = ` ${Math.floor(time_sec / 60 / 60)} 時間前`;
+  //   }
+  //   postEl.append(timeEl);
 
-    const postEl = document.createElement("div");
-    postEl.className = "one_post";
+  //   // text
+  //   const textEl = document.createElement("div");
+  //   textEl.className = "text";
+  //   textEl.innerText = obj.text;
+  //   postEl.append(textEl);
 
-    //friend
-    const friendEl = document.createElement("div");
-    friendEl.className = "friend_name";
-    friendEl.innerText = obj.friend;
-    postEl.append(friendEl);
+  //   // feeling
+  //   const feelingEl = document.createElement("div");
+  //   feelingEl.className = "feeling";
+  //   feelingEl.innerText = obj.feeling;
+  //   postEl.append(feelingEl);
 
-    //time
-    const timeEl = document.createElement("div");
-    timeEl.className = "post_time";
+  //   // img
+  //   const imageEl = document.createElement("img");
+  //   imageEl.className = "picture";
+  //   imageEl.src = `images/${obj.image}`;
+  //   imageEl.alt = obj.image;
+  //   postEl.append(imageEl);
 
-    timeEl.innerText = obj.timestamp;
-    postEl.append(timeEl);
-
-    //text
-    const textEl = document.createElement("div");
-    textEl.className = "text";
-    textEl.innerText = obj.text;
-    postEl.append(textEl);
-
-    //feeling
-    const feelingEl = document.createElement("div");
-    feelingEl.className = "feeling";
-    feelingEl.innerText = obj.feeling;
-    postEl.append(feelingEl);
-
-    //img
-    const imageEl = document.createElement("img");
-    imageEl.className = "picture";
-    imageEl.src = `images/${obj.image}`;
-    imageEl.alt = obj.image;
-    postEl.append(imageEl);
-
-    console.log("postEl",postEl)
-    containerEl.prepend(postEl);
-  }
-
-
+  //   containerEl.prepend(postEl);
+  // }
 })();

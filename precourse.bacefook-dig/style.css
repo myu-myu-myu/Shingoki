@@ -1,14 +1,8 @@
-/* 全体 */
-* {
-    margin: 0;
-    padding: 0;
-}
-
 body {
-    /* background-color: #ccc; */
-    height: 100vh;
+    background-color: #ccc;
     margin: 0;
     padding: 0;
+    /* text-align: center; */
 }
 
 body.no_scroll {
@@ -16,157 +10,58 @@ body.no_scroll {
 }
 
 header {
-    width: 700px;
+    width: 100%;
     height: 70px;
     background-color: rgba(255, 255, 255, 0.85);
     margin: 0;
     position: fixed;
-    /* justify-content: space-between; */
+    justify-content: space-between;
     align-items: center;
     display: flex;
-    border-left: 500px solid white;
-    /* position: relative; */
+}
+
+
+#new_post {
+    visibility: hidden;
+    font-size: 15px;
+    position: fixed;
+    top: 65px;
+    left: 50%;
+    transform:translateX(-50%);
+    box-shadow: 6px 6px 10px 0px rgba(0, 0, 0, 0.4);
+}
+
+#new_post.active{
+    visibility: visible;
+    transition: .3s;
+    opacity: 1;
 }
 
 h1 {
-    position: absolute;
+    /* color: #007BFF; */
     margin: 0;
     padding: 0 0 0 20px;
     /* 上・右・下・左 */
 }
 
 #login_name {
-    position: absolute;
-    right: 80px;
-    text-align: right;
-    font-weight: bold;
-    padding: 0;
-    margin: 0 0 10px 20px;
-}
-
-#login_icon {
-    position: absolute;
-    right: 10px;
     text-align: right;
     padding: 0;
     margin: 0 0 10px 20px;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    object-fit: cover;
 }
 
-
-
-/* サイドバー */
-nav {
-    position: fixed;
-}
-
-.navi {
-    position: fixed;
-    height: 100vh;
-    width: 300px;
-    border-left: 200px solid white;
-    border-right: 1px solid #f5f5f5;
-}
-
-.navi #top_icon {
-    position: absolute;
-    padding: 4px;
-    margin: 10px 0 0 20px;
-    background-color: white;
-    border-radius: 50%;
-    width: 50px;
-    height: 50px;
-}
-
-.navi ul {
-    position: absolute;
-    top: 50px;
-    left: 0;
-    width: 80%;
-    padding-top: 20px;
-    padding-left: 10px;
-}
-
-.navi ul li {
-    list-style: none;
-    display: block;
-    width: 100%;
-    position: relative;
-    border-radius: 30px;
-    background-color: white;
-    transition: all 0.3s;
-    margin: 10px 0 0 0;
-}
-
-.navi ul li:hover {
-    background-color: #e3e3e3;
-}
-
-.navi ul li.active {
-    font-weight: bold;
-}
-
-.navi ul li a {
-    text-decoration: none;
-    color: black;
-    width: 100%;
-    display: flex;
-    position: relative;
-}
-
-.navi ul li a .icon {
-    display: block;
-    min-width: 60px;
-    height: 50px;
-    line-height: 70px;
-    text-align: center;
-}
-
-ion-icon {
-    font-size: 30px;
-    color: black;
-}
-
-.navi ul li a .title {
-    padding-left: 10px;
-    height: 50px;
-    line-height: 50px;
-}
-
-.iconpic {
-    width: 40px;
-    border-radius: 50%;
-}
-
-#post_btn {
-    width: 200px;
-    background-color: #1C9BEF;
-    font-size: 20px;
-}
-
-#post_btn a {
-    /* text-align: center; */
-    width: 100%;
-}
-
-
-
-/* 投稿記事 */
-.m_win {
+.modal-window {
     max-width: 500px;
     margin: 0 auto;
-    padding: 20px;
+    /* padding: 0px 60px 20px 40px; */
     background-color: #f7f7f7;
+    border: 2px solid #ccc;
     border-radius: 5px;
 }
 
 form {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
 }
 
 label {
@@ -174,33 +69,30 @@ label {
     margin-top: 10px;
 }
 
-textarea {
-    max-width: 90%;
-    height: 150px;
+/* input {
+    max-width: 478px;
+    height: 10px;
+    padding: 10px;
     margin-top: 5px;
     border: 1px solid #ccc;
     border-radius: 5px;
-    font-size: 20px;
-    text-align: left;
+} */
+
+textarea {
+    max-width: 478px;
+    height: 5s0px;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
 }
 
-#feel_tag {
-    display: flex;
-    flex-direction: row;
-    width: 90%;
-    margin-top: 30px;
-    margin-bottom: 20px;
-    justify-content: space-between;
-}
-
-#articleFeeling,
-#articleTag {
+#articleFeeling {
     font-size: 20px;
-    width: 400px;
+    width: 150px;
     height: 50px;
     text-align: center;
     margin: 0 0 10px 0;
-    border: 1px solid #ccc;
 }
 
 button {
@@ -212,203 +104,228 @@ button {
     cursor: pointer;
 }
 
-.btn_water {
-    background-color: #1C9BEF;
+.btn_green {
+    background-color: rgb(71, 247, 142);
 }
 
-.btn_water:hover {
-    background-color: #13659d;
+.btn_green:hover {
+    background-color: rgb(48, 167, 96);
 }
 
-.btn_black {
-    background-color: black;
-}
 
-.btn_black:hover {
-    background-color: rgb(61, 61, 61);
-}
-
-article {
+.one_post {
     max-width: 600px;
-    margin: 0 auto;
-    background-color: white;
-    border: 1px solid #f5f5f5;
+    margin: 30px auto;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    background-color: #f7f7f7;
+    border: 1px solid #ccc;
     border-radius: 5px;
+    box-shadow: 2px 2px 4px #949393;
 }
 
 #newsfeed {
     width: 100%;
-    transition: all 0.3s;
-}
-
-#newsfeed .one_post:hover {
-    background-color: #f5f5f5;
-}
-
-.friend_info {
-    display: flex;
-    flex-direction: row;
 }
 
 .friend_name {
     font-family: Helvetica, Arial, sans-serif;
     font-weight: bold;
     font-size: 20px;
-    padding: 30px 0 0 10px;
+    padding: 20px 0 0 50px;
 }
 
-.friend_icon {
-    object-fit: cover;
-    width: 50px;
-    height: 50px;
+/* .icon {
+    width: 300px;
+    height: 300px;
     border-radius: 50%;
-    padding: 20px 0 0 30px;
-}
+    object-fit: cover;
+} */
 
 .post_time {
-    padding: 0 0 10px 90px;
+    padding: 0 0 10px 50px;
 }
 
 .text {
     padding: 0 0 0 20px;
-    font-size: 17px;
-    font-weight: bold;
-}
-
-.tag {
-    color: #1C9BEF;
-    text-align: right;
-    padding: 0 40px 0 0;
-    font-size: 15px;
-    font-weight: bold;
 }
 
 .feeling {
     text-align: right;
     padding: 0 40px 0 0;
-    font-size: 15px;
-    font-weight: bold;
 }
-
 
 .picture {
     width: 100%;
-    height: 400px;
-    object-fit: cover;
     padding: 0 0 40px 0;
 }
 
 #articlePicture {
-    width: 90%;
-    font-size: 20px;
-    background-color: rgb(231, 231, 231);
-    padding: 50px 0 50px 0;
+    border: solid 5px red;
+    /* background-color: red; */
+    padding: 2rem;
     text-align: center;
 }
 
 
 
+/*modalボタン-----------------------------------*/
 
+.btn,
+a.btn,
+button.btn {
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 1.5;
+    position: relative;
+    display: inline-block;
+    padding: 1rem 4rem;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-transition: all 0.3s;
+    transition: all 0.3s;
+    text-align: center;
+    vertical-align: middle;
+    text-decoration: none;
+    letter-spacing: 0.1em;
+    color: #212529;
+    border-radius: 0.5rem;
+}
 
-/* modal 開始ボタン */
-a.btn_m_open {
+a.btn-modal-open {
     overflow: hidden;
-    padding: 10px 20px 10px 20px;
-    border-radius: 30px;
-    background-color: #1C9BEF;
+    padding: 0.5rem 2rem;
+    
+    color: #414141d2;
+    border-radius: 0;
+    background: rgb(248, 248, 122);
 }
 
-#post_btn a span {
-    color: white;
-    font-weight: bold;
-    margin: 0 auto;
-}
-
-a.btn_m_open span {
+a.btn-modal-open span {
     position: relative;
 }
 
+a.btn-modal-open:before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    
+    width: 150%;
+    height: 500%;
+    
+    content: "";
+    -webkit-transition: all 0.5s ease-in-out;
+    transition: all 0.5s ease-in-out;
+    -webkit-transform: translateX(-98%) translateY(-25%) rotate(45deg);
+    transform: translateX(-98%) translateY(-25%) rotate(45deg);
+    
+    background:rgb(123, 251, 114);
+}
 
+a.btn-modal-open:hover:before {
+    -webkit-transform: translateX(-9%) translateY(-25%) rotate(45deg);
+    transform: translateX(-9%) translateY(-25%) rotate(45deg);
+}
 
-
-
-/* modal 遷移後の表示 */
-.m_overlay {
+/*modal本体-----------------------------------*/
+.modal-overlay{
     visibility: hidden;
     position: fixed;
-    left: 0px;
+    left: 0;
     top: 0;
-    width: 100%;
+    width: 100vw;
     height: 100vh;
-    background-color: rgba(0, 0, 0, .7);
+    background-color: rgba(0,0,0,.7);
     z-index: 999;
-    transition: 0.3s;
-    opacity: 0;
+    transition: .3s;
+    opacity:0;
 }
-
-.m_overlay.active {
+.modal-overlay.active{
     visibility: visible;
-    transition: 0.3s;
+    transition: .3s;
     opacity: 1;
 }
-
-.m_win {
+.modal-window{
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%,-50%);
     background-color: #fff;
     width: 80%;
-    min-width: 900px;
+    max-width: 900px;
     height: 500px;
     margin: 0;
-    padding: 30px;
+    padding: 5px;
     overflow-y: auto;
 }
 
-#m_close {
+#modal-button-wrapper {
+    /* position: fixed; */
+    margin: 0;
+    justify-content: space-between;
+    align-items: center;
+    display: flex;
+}
+
+
+#close-01 {
     position: absolute;
-    width: 50px;
-    height: 50px;
+    width: 20px;
+    height: 20px;
     top: 20px;
     right: 20px;
-    background-color: white;
 }
-
-#m_close::before {
-    content: "";
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 25px;
-    height: 3px;
-    background-color: #1C9BEF;
-    transform: translate(-50%, -50%) rotate(45deg);
-}
-
-#m_close::after {
+#close-01::before {
     content: '';
     position: absolute;
     top: 50%;
     left: 50%;
     width: 25px;
-    height: 3px;
-    background-color: #1C9BEF;
+    height: 1px;
+    background-color: #000;
+    transform: translate(-50%, -50%) rotate(45deg);
+}
+#close-01::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 25px;
+    height: 1px;
+    background-color: #000;
     transform: translate(-50%, -50%) rotate(-45deg);
 }
+.modal-opened {
+    overflow-y: hidden; /*背景を固定*/
+}
+@media screen and (max-width: 900px) {
+    #prev, #next {
+        width: 40px;
+        height: 40px;
+        top: 114%;
+    }
+    #prev{
+        left: 35%;
+    }
+    #next{
+        right: 35%;
+    }
 
-#m_post {
+
+}
+#modal-post {
     width: 200px;
     height: 50px;
-    font-size: 20px;
-    border-radius: 30px;
 }
 
-#m_post_wrap {
-    text-align: center;
-    padding: 20px 60px 20px 0;
+
+#modal-close {
+    background-color:rgb(71, 247, 142);
 }
 
-#m_close_wrap {
-    text-align: right;
+#modal-close:hover {
+    background-color: rgb(48, 167, 96);
 }
